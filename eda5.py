@@ -2,6 +2,7 @@ import os
 import csv
 import re
 open_lane_path = '/home/simuse/OpenLane/'
+docker_id = '0c78d59bf5bd'
 
 designs = ['adder.v','adder1.v','adder2.v','adder3.v']
 this_tag = 'current_run'
@@ -14,7 +15,7 @@ for adder in designs:
     print(adder)
     os.system("cp "+adder+" "+open_lane_path+"designs/adder/src/top.v")
     #os.system("cd /home/simuse/OpenLane/")
-    os.system("docker exec  0c78d59bf5bd ./flow.tcl -design adder -overwrite -tag "+this_tag)
+    os.system("docker exec "+docker_id+" ./flow.tcl -design adder -overwrite -tag "+this_tag)
     os.system("cd /home/simuse/Desktop/Amaranth/test")
     with open (open_lane_path+'designs/adder/runs/'+this_tag+'/reports/signoff/24-rcx_sta.area.rpt') as area_file:
         for data in area_file:
