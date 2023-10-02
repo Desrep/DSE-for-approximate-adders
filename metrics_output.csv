@@ -1,0 +1,5 @@
+type, area, power, delay
+adder, 409, 3.42e-05, 3.76
+adder1, 385, 3.08e-05, 3.97
+adder2, 365, 2.82e-05, 3.75
+adder3, 340, 2.45e-05, 3.65
