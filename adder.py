@@ -2,10 +2,12 @@ from amaranth import *
 from amaranth.cli import main
 
 class Adder_LOA1(Elaboratable):
-    def __init__(self, width):
-        self.a   = Signal(width)
-        self.b   = Signal(width)
-        self.o   = Signal(width+1)
+    def __init__(self, width,a,b,o):
+
+        self.a   = a
+        self.b   = b
+        self.o = o
+
 
     def elaborate(self, platform):
         m = Module()
@@ -14,13 +16,13 @@ class Adder_LOA1(Elaboratable):
         return m
 
 
+class Adder_STD(Elaboratable):
+    def __init__(self, width,a,b,o):
 
+        self.a   = a
+        self.b   = b
+        self.o = o
 
-class Adder(Elaboratable):
-    def __init__(self, width):
-        self.a   = Signal(width)
-        self.b   = Signal(width)
-        self.o   = Signal(width+1)
 
     def elaborate(self, platform):
         m = Module()
@@ -29,10 +31,12 @@ class Adder(Elaboratable):
 
 
 class Adder_LOA2(Elaboratable):
-    def __init__(self, width):
-        self.a   = Signal(width)
-        self.b   = Signal(width)
-        self.o   = Signal(width+1)
+    def __init__(self, width,a,b,o):
+
+        self.a   = a
+        self.b   = b
+        self.o = o
+
 
     def elaborate(self, platform):
         m = Module()
@@ -42,10 +46,12 @@ class Adder_LOA2(Elaboratable):
         return m
 
 class Adder_LOA3(Elaboratable):
-    def __init__(self, width):
-        self.a   = Signal(width)
-        self.b   = Signal(width)
-        self.o   = Signal(width+1)
+    def __init__(self, width,a,b,o):
+
+        self.a   = a
+        self.b   = b
+        self.o = o
+
 
     def elaborate(self, platform):
         m = Module()
