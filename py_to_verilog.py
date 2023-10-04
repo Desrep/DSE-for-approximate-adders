@@ -1,6 +1,8 @@
 from amaranth.back import verilog
 from dut import *
 
+###################convert design from python to verilog######################################
+
 dut_design = dut(8)
 
 with open("dut.v", "w") as f:
