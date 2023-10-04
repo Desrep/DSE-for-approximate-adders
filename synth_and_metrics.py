@@ -2,9 +2,17 @@ import os
 import csv
 import re
 open_lane_path = '/home/simuse/OpenLane/'
-docker_id = '0c78d59bf5bd'
 
-designs = ['adder.v','adder1.v','adder2.v','adder3.v']
+os.system("docker ps > containerid.txt")
+docker_id = ''
+
+with open('containerid.txt') as dockid:
+    for line,data in enumerate(dockid):
+        if(line == 1):
+            docker_id = data.split()[0]
+print(docker_id)
+
+designs = ['dut.v']
 this_tag = 'current_run'
 os.system("rm metrics_output.csv")
 with open ('metrics_output.csv','w') as metric_output:
