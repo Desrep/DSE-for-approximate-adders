@@ -4,17 +4,13 @@
 (* generator = "Amaranth" *)
 module adder1(a1, b1, o1);
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *)
-  wire [6:0] \$1 ;
-  (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:26" *)
-  wire \$10 ;
-  (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:28" *)
-  wire \$12 ;
+  wire [8:0] \$1 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *)
-  wire [5:0] \$2 ;
+  wire [7:0] \$2 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *)
   wire \$4 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *)
-  wire [6:0] \$6 ;
+  wire [8:0] \$6 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:24" *)
   wire \$8 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/dut.py:9" *)
@@ -26,34 +22,26 @@ module adder1(a1, b1, o1);
   (* src = "/home/simuse/Desktop/Amaranth/test/dut.py:13" *)
   output [8:0] o1;
   wire [8:0] o1;
-  assign \$10  = a1[1] | (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:26" *) b1[1];
-  assign \$12  = a1[2] | (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:28" *) b1[2];
-  assign \$2  = a1[7:3] + (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) b1[7:3];
-  assign \$4  = a1[2] & (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) b1[2];
+  assign \$2  = a1[7:1] + (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) b1[7:1];
+  assign \$4  = a1[0] & (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) b1[0];
   assign \$6  = \$2  + (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) \$4 ;
   assign \$8  = a1[0] | (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:24" *) b1[0];
   assign \$1  = \$6 ;
-  assign o1[2] = \$12 ;
-  assign o1[1] = \$10 ;
   assign o1[0] = \$8 ;
-  assign o1[8:3] = \$6 [5:0];
+  assign o1[8:1] = \$6 [7:0];
 endmodule
 
 (* \amaranth.hierarchy  = "top.adder2" *)
 (* generator = "Amaranth" *)
 module adder2(a2, b2, o2);
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *)
-  wire [6:0] \$1 ;
-  (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:26" *)
-  wire \$10 ;
-  (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:28" *)
-  wire \$12 ;
+  wire [8:0] \$1 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *)
-  wire [5:0] \$2 ;
+  wire [7:0] \$2 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *)
   wire \$4 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *)
-  wire [6:0] \$6 ;
+  wire [8:0] \$6 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:24" *)
   wire \$8 ;
   (* src = "/home/simuse/Desktop/Amaranth/test/dut.py:10" *)
@@ -65,17 +53,13 @@ module adder2(a2, b2, o2);
   (* src = "/home/simuse/Desktop/Amaranth/test/dut.py:14" *)
   output [8:0] o2;
   wire [8:0] o2;
-  assign \$10  = a2[1] | (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:26" *) b2[1];
-  assign \$12  = a2[2] | (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:28" *) b2[2];
-  assign \$2  = a2[7:3] + (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) b2[7:3];
-  assign \$4  = a2[2] & (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) b2[2];
+  assign \$2  = a2[7:1] + (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) b2[7:1];
+  assign \$4  = a2[0] & (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) b2[0];
   assign \$6  = \$2  + (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:22" *) \$4 ;
   assign \$8  = a2[0] | (* src = "/home/simuse/Desktop/Amaranth/test/built_adder.py:24" *) b2[0];
   assign \$1  = \$6 ;
-  assign o2[2] = \$12 ;
-  assign o2[1] = \$10 ;
   assign o2[0] = \$8 ;
-  assign o2[8:3] = \$6 [5:0];
+  assign o2[8:1] = \$6 [7:0];
 endmodule
 
 (* \amaranth.hierarchy  = "top" *)
