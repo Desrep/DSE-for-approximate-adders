@@ -14,4 +14,4 @@ Este script convierte el dut (que en este momento ya contiene el adder seleccion
 Este script toma el dut.py y lo convierte a verilog, lo copia en el diseño de OpenLane y lo sintetiza, luego extrae las métricas de área, potencia y delay y las
 escribe al archivo metrics_ouput.csv.
 ## eda_flow.py 
-Representa el flujo total, en este caso simplemente prueba todos los adders de la base de datos en el dut.
+Representa el flujo total, en este caso simplemente prueba todos los adders de la base de datos en el dut. Genera el archivo design_space.txt que tiene las métricas para cada caso en secuencia.
