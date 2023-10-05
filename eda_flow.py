@@ -15,12 +15,6 @@ from pymoo.optimize import minimize
 import os
 from scipy.optimize import basinhopping
 
-def step_routine(x):
-    x[0] += -1 + np.random.randint(5,size = 1)
-    print(int(x))
-    return int(x)
-
-
 
 
 os.system('rm design_space.txt')
@@ -28,8 +22,6 @@ with open('design_space.txt','w') as space:
     space.write('design, area, power, delay\n')
 
 
-def print_fun(x,f,accepted):
-    print("minimo local %f %d" % (f,int(accepted)))
 
 minimizer_kwargs = {"method": "BFGS"}
 
@@ -39,8 +31,9 @@ class ThisProblem(Problem):
         super().__init__(n_var=1, n_obj=1, n_ieq_constr = 1, xl = 0, xu = 3, vtype = int)
 
     def _evaluate(self,x,out,*args,**kwargs):
-        out["F"] = [objective_func(x)]
-        out["G"] = -x
+        out["F"] = objective_func(x)
+        print(out["F"])
+        out["G"] = out["F"][0]-900 
 
 def objective_func(x):
     if(x[0]==0):
@@ -62,7 +55,7 @@ def objective_func(x):
             if(line == 1):
                 with open('design_space.txt','a') as space:
                     space.write(data+'\n')
-                f = np.array([float(data.split()[1].strip(','))])
+                f = np.array([float(data.split()[1].strip(','))+float(data.split()[2].strip(','))*1e5+float(data.split()[3].strip(','))])
                 print(f)
     return f
 
