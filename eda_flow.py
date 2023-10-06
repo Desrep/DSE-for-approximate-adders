@@ -11,11 +11,10 @@ from pymoo.core.variable import Real, Integer, Choice, Binary
 import os
 
 
-
+os.system('rm design_space_exploration.txt')
 os.system('rm design_space.txt')
 with open('design_space.txt','w') as space:
     space.write('design, area, power, delay\n')
-
 
 
 
@@ -33,9 +32,10 @@ class ThisProblem(ElementwiseProblem):
 
     def _evaluate(self,x,out,*args,**kwargs):
         x,y = x["x"],x["y"]
-        out["F"] = [objective_func(x,y)]
+        out["F"] = objective_func(x,y)
+        with open('design_space_exploration.txt','a') as dse:
+            dse.write(str(out["F"])+'\n')
         print(out)
-        #out["G"] = out["F"][0][0]+out["F"][0][1]*1e5+out["F"][0][2]-900 
 
 def objective_func(x,y):
     if((x==0)and(y==0)):
@@ -74,13 +74,19 @@ algorithm = MixedVariableGA(pop_size=10, survival=RankAndCrowdingSurvival())
 
 res = minimize(problem,
                algorithm,
-               ('n_gen', 20),
+               ('n_gen', 5),
                seed=1,
+               save_history = True,
                verbose=False)
 
+
 plot = Scatter()
-plot.add(problem.pareto_front(), plot_type="line", color="black", alpha=0.7)
+plot.add(problem.pareto_front(), plot_type="surface", color="blue", alpha=0.7)
 plot.add(res.F, facecolor="none", edgecolor="red")
+with open('design_space_exploration.txt') as dsp:
+    for data in dsp:
+        design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',')), float((data.split()[2].strip(',')).strip(']'))]
+        plot.add(np.array(design_space), facecolor = "none", edgecolor = "black")
 plot.show()
 
 
