@@ -28,22 +28,29 @@ minimizer_kwargs = {"method": "BFGS"}
 class ThisProblem(Problem):
 
     def __init__(self):
-        super().__init__(n_var=1, n_obj=1, n_ieq_constr = 1, xl = 0, xu = 3, vtype = int)
+        super().__init__(n_var=2, n_obj=1, n_ieq_constr = 1, xl = np.array([0,0]), xu = np.array([1,3]), vtype = int)
 
     def _evaluate(self,x,out,*args,**kwargs):
-        out["F"] = objective_func(x)
+        out["F"] = np.array(objective_func(x))
         print(out["F"])
-        out["G"] = out["F"][0]-900 
+        out["G"] = out["F"]-900 
 
 def objective_func(x):
-    if(x[0]==0):
+    print(x)
+    if((x[0,0]==0)and(x[0,1]==0)):
         atype = 'STD'
-    elif(x[0]==1):
+    elif((x[0,0]==0)and(x[0,1]==1)):
         atype = 'LOA1'
-    elif(x[0]==2):
+    elif((x[0,0]==0)and(x[0,1]==2)):
         atype = 'LOA2'
-    elif(x[0]==3):
+    elif((x[0,0]==0)and(x[0,1]==3)):
         atype = 'LOA3'
+    elif((x[0,0]==1)and(x[0,1]==1)):
+        atype = 'LOWA1'
+    elif((x[0,0]==1)and(x[0,1]==2)):
+        atype = 'LOWA2'
+    elif((x[0,0]==1)and(x[0,1]==3)):
+        atype = 'LOWA3'
     print(atype)
     with open('adder_selection.txt','w') as select:
         select.write(atype)
@@ -55,7 +62,7 @@ def objective_func(x):
             if(line == 1):
                 with open('design_space.txt','a') as space:
                     space.write(data+'\n')
-                f = np.array([float(data.split()[1].strip(','))+float(data.split()[2].strip(','))*1e5+float(data.split()[3].strip(','))])
+                f = [float(data.split()[1].strip(','))+float(data.split()[2].strip(','))*1e5+float(data.split()[3].strip(','))]
                 print(f)
     return f
 
@@ -70,7 +77,7 @@ method = GA(pop_size=1,
 
 res = minimize(problem,
                method,
-               termination=('n_gen', 5),
+               termination=('n_gen', 15),
                seed=1,
                save_history=True
                )
