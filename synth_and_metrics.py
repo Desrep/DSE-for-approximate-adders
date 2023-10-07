@@ -28,7 +28,7 @@ for dut in designs:
     os.system("cp "+dut+" "+open_lane_path+"designs/dut/src/top.v")
     os.system("docker exec "+docker_id+" ./flow.tcl -design dut -overwrite -tag "+this_tag)
     
-##################open reports and get the date#############################################################
+##################open reports and get the data#############################################################
    #area#
     with open (open_lane_path+'designs/dut/runs/'+this_tag+'/reports/signoff/24-rcx_sta.area.rpt') as area_file:
         for data in area_file:
