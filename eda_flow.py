@@ -23,7 +23,7 @@ class ThisProblem(ElementwiseProblem):
     def __init__(self,**kwargs):
         vars = {
             "x": Integer(bounds=(0, 1)),
-            "y":Integer(bounds=(0,3))
+            "y":Integer(bounds=(1,10))
         }
         super().__init__(vars=vars, n_obj=3,n_ieq_constr=0,**kwargs)
 
@@ -38,25 +38,13 @@ class ThisProblem(ElementwiseProblem):
         print(out)
 
 def objective_func(x,y):
-    if((x==0)and(y==0)):
-        atype = 'STD'
-    elif((x==0)and(y==1)):
-        atype = 'LOA1'
-    elif((x==0)and(y==2)):
-        atype = 'LOA2'
-    elif((x==0)and(y==3)):
-        atype = 'LOA3'
-    elif((x==1)and(y==1)):
-        atype = 'LOWA1'
-    elif((x==1)and(y==2)):
-        atype = 'LOWA2'
-    elif((x==1)and(y==3)):
-        atype = 'LOWA3'
+    if(x==0):
+        atype = 'LOA'
     else:
-        atype = 'STD'
-    print(atype)
+        atype = 'COPY'
+    
     with open('adder_selection.txt','w') as select:
-        select.write(atype)
+        select.write(atype+" "+str(y))
     os.system("python3 adder_builder.py") #first create adder
     os.system("python3 py_to_verilog.py") # convert dut to verilog
     os.system("python3 synth_and_metrics.py") # synthesize and get metrics
