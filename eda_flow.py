@@ -22,7 +22,7 @@ class ThisProblem(ElementwiseProblem):
 
     def __init__(self,**kwargs):
         vars = {
-            "x": Integer(bounds=(0, 1)),
+            "x": Integer(bounds=(0, 2)),
             "y":Integer(bounds=(1,10))
         }
         super().__init__(vars=vars, n_obj=3,n_ieq_constr=0,**kwargs)
@@ -40,11 +40,15 @@ class ThisProblem(ElementwiseProblem):
 def objective_func(x,y):
     if(x==0):
         atype = 'LOA'
+    elif(x==1):
+        atype = 'LOWA'
     else:
         atype = 'COPY'
     
     with open('adder_selection.txt','w') as select:
         select.write(atype+" "+str(y))
+    with open('design_space_exploration.txt','a') as dse:
+        dse.write(atype+str(y)+'\n')
     os.system("python3 adder_builder.py") #first create adder
     os.system("python3 py_to_verilog.py") # convert dut to verilog
     os.system("python3 synth_and_metrics.py") # synthesize and get metrics
@@ -62,7 +66,7 @@ algorithm = MixedVariableGA(pop_size=10, survival=RankAndCrowdingSurvival())
 
 res = minimize(problem,
                algorithm,
-               ('n_gen', 5),
+               ('n_gen', 8),
                seed=1,
                save_history = True,
                verbose=False)

@@ -54,6 +54,22 @@ class Adder_STD0(Elaboratable):
         m.d.comb += self.o.eq(self.a + self.b)
         return m
 
+#######LOWA for k-lower bits, this must be replaced by truncation############################
+class Adder_LOWAK(Elaboratable):
+    def __init__(self, width,a,b,o):
+
+        self.a   = a
+        self.b   = b
+        self.o = o
+        self.k = 8
+
+    def elaborate(self, platform):
+        m = Module()
+        for bit in range(self.k):
+            m.d.comb += self.o[bit].eq(self.a[bit]|self.b[bit])
+
+        m.d.comb += self.o[self.k:].eq(self.a[self.k:] + self.b[self.k:])
+        return m
 
 
 
