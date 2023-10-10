@@ -1,22 +1,27 @@
+###This is the database for approximate adders###################################################
+
 from amaranth import *
 from amaranth.cli import main
 
-class Adder_LOA1(Elaboratable):
+#######LOA for k-lower bits############################
+class Adder_LOAK(Elaboratable):
     def __init__(self, width,a,b,o):
 
         self.a   = a
         self.b   = b
         self.o = o
-
+        self.k = 8 
 
     def elaborate(self, platform):
         m = Module()
-        m.d.comb += self.o[1:].eq(self.a[1:] + self.b[1:]+(self.a[0]&self.b[0]))
-        m.d.comb += self.o[0].eq(self.a[0]|self.b[0])
+        m.d.comb += self.o[self.k:].eq(self.a[self.k:] + self.b[self.k:]+(self.a[self.k-1]&self.b[self.k-1]))
+        for bit in range(self.k-1):
+            m.d.comb += self.o[bit].eq(self.a[bit]|self.b[bit])
         return m
 
 
-class Adder_STD(Elaboratable):
+##################Standard adder with no approximation##################
+class Adder_STD0(Elaboratable):
     def __init__(self, width,a,b,o):
 
         self.a   = a
@@ -30,36 +35,6 @@ class Adder_STD(Elaboratable):
         return m
 
 
-class Adder_LOA2(Elaboratable):
-    def __init__(self, width,a,b,o):
-
-        self.a   = a
-        self.b   = b
-        self.o = o
-
-
-    def elaborate(self, platform):
-        m = Module()
-        m.d.comb += self.o[2:].eq(self.a[2:] + self.b[2:]+(self.a[1]&self.b[1]))
-        m.d.comb += self.o[0].eq(self.a[0]|self.b[0])
-        m.d.comb += self.o[1].eq(self.a[1]|self.b[1])
-        return m
-
-class Adder_LOA3(Elaboratable):
-    def __init__(self, width,a,b,o):
-
-        self.a   = a
-        self.b   = b
-        self.o = o
-
-
-    def elaborate(self, platform):
-        m = Module()
-        m.d.comb += self.o[3:].eq(self.a[3:] + self.b[3:]+(self.a[2]&self.b[2]))
-        m.d.comb += self.o[0].eq(self.a[0]|self.b[0])
-        m.d.comb += self.o[1].eq(self.a[1]|self.b[1])
-        m.d.comb += self.o[2].eq(self.a[2]|self.b[2])
-        return m
 
 
 
