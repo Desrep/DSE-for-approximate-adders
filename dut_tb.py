@@ -1,15 +1,17 @@
 from amaranth.sim import Simulator, Settle, Delay
-from dut import dut
+from built_adder import Adder
+from amaranth import *
 
+a = Signal(8)
+b= Signal(8)
+o = Signal(9)
 
-dut = dut(8)
+dut = Adder(8,a,b,o)
 
 
 def bench():
-    yield dut.a1.eq(5)
-    yield dut.b1.eq(3)
-    yield dut.a2.eq(0)
-    yield dut.b2.eq(1)
+    yield dut.a.eq(5)
+    yield dut.b.eq(3)
     yield Delay(1e-9)
     yield Settle()
 
@@ -18,6 +20,6 @@ sim1 = Simulator(dut)
 
 sim1.add_process(bench)
 
-with sim1.write_vcd("dut.vcd"):
+with sim1.write_vcd("add_test.vcd"):
     sim1.run()
 

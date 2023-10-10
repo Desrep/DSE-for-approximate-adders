@@ -8,7 +8,7 @@ os.system('rm design_space.txt')
 with open('design_space.txt','w') as space:
     space.write('design, area, power, delay\n')
     
-adder_type = ['STD0','LOA1','LOA2','LOA3']
+adder_type = ['STD0','LOA1','LOA2','LOA1','COPY1','COPY2']
 
 for atype in adder_type: #for every adder type
     to_write = re.split(r'(\d+)',atype)

@@ -25,7 +25,7 @@ with open('adder.py') as adder_db:
                 if(data.strip()=="self.k = 8"):
                     out_file.write(data.replace("8",lower_bits)+"\n")
                 else:
-                    out_file.write(data+"\n")
+                    out_file.write(data)
 
         if((data.find(adder_type+lower_bits) != -1)|(data.find(adder_type+'K')!= -1)):
             record = 1
