@@ -41,9 +41,9 @@ def objective_func(x,y):
     if(x==0):
         atype = 'LOA'
     elif(x==1):
-        atype = 'LOWA'
-    else:
         atype = 'COPY'
+    elif(x==2):
+        atype = 'TRUN'
     
     with open('adder_selection.txt','w') as select:
         select.write(atype+" "+str(y))
@@ -62,11 +62,11 @@ def objective_func(x,y):
 
 problem = ThisProblem()
 
-algorithm = MixedVariableGA(pop_size=10, survival=RankAndCrowdingSurvival())
+algorithm = MixedVariableGA(pop_size=6, survival=RankAndCrowdingSurvival())
 
 res = minimize(problem,
                algorithm,
-               ('n_gen', 8),
+               ('n_gen', 20),
                seed=1,
                save_history = True,
                verbose=False)
@@ -77,8 +77,9 @@ plot.add(problem.pareto_front(), plot_type="surface", color="blue", alpha=0.7)
 plot.add(res.F, facecolor="none", edgecolor="red")
 with open('design_space_exploration.txt') as dsp:
     for data in dsp:
-        design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',')), float((data.split()[2].strip(',')).strip(']'))]
-        plot.add(np.array(design_space), facecolor = "none", edgecolor = "black")
+        if(len(data.split())!= 1):
+            design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',')), float((data.split()[2].strip(',')).strip(']'))]
+            plot.add(np.array(design_space), facecolor = "none", edgecolor = "black")
 plot.show()
 
 

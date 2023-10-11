@@ -70,8 +70,18 @@ class Adder_LOWAK(Elaboratable):
 
         m.d.comb += self.o[self.k:].eq(self.a[self.k:] + self.b[self.k:])
         return m
+##########################Adder truncation, the k-lsb are set to 0##############################
+class Adder_TRUNK(Elaboratable):
+    def __init__(self, width,a,b,o):
 
+        self.a   = a
+        self.b   = b
+        self.o = o
+        self.k = 8
 
-
-
+    def elaborate(self, platform):
+        m = Module()
+        m.d.comb += self.o[:self.k].eq(0)
+        m.d.comb += self.o[self.k:].eq(self.a[self.k:] + self.b[self.k:])
+        return m
 
