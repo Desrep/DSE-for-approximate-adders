@@ -10,7 +10,7 @@ dut = Adder(8,a,b,o)
 
 
 def bench():
-    yield dut.a.eq(5)
+    yield dut.a.eq(7)
     yield dut.b.eq(3)
     yield Delay(1e-9)
     yield Settle()
