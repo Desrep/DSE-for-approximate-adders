@@ -1,17 +1,19 @@
 from amaranth.sim import Simulator, Settle, Delay
 from dut import dut
+import random
 
 
-dut = dut(8)
+dut = dut(32)
 
-
+random.seed(1)
 def bench():
-    yield dut.a1.eq(5)
-    yield dut.b1.eq(3)
-    yield dut.a2.eq(0)
-    yield dut.b2.eq(1)
-    yield Delay(1e-9)
-    yield Settle()
+    for i in range(100):
+        yield dut.a1.eq(random.randint(0,1000000))
+        yield dut.b1.eq(random.randint(0,1000000))
+        yield dut.a2.eq(random.randint(0,1000000))
+        yield dut.b2.eq(random.randint(0,1000000))
+        yield Delay(1e-9)
+        yield Settle()
 
 
 sim1 = Simulator(dut)
