@@ -4,14 +4,20 @@ import random
 
 
 dut = dut(32)
+upper_limit = 2048
 
 random.seed(1)
 def bench():
-    for i in range(100):
-        yield dut.a1.eq(random.randint(0,1000000))
-        yield dut.b1.eq(random.randint(0,1000000))
-        yield dut.a2.eq(random.randint(0,1000000))
-        yield dut.b2.eq(random.randint(0,1000000))
+    for i in range(1000):
+        yield dut.a1.eq(random.randint(0,upper_limit))
+        yield dut.a2.eq(random.randint(0,upper_limit))
+        yield dut.a3.eq(random.randint(0,upper_limit))
+        yield dut.a4.eq(random.randint(0,upper_limit))
+        yield dut.a5.eq(random.randint(0,upper_limit))
+        yield dut.a6.eq(random.randint(0,upper_limit))
+        yield dut.a7.eq(random.randint(0,upper_limit))
+        yield dut.a8.eq(random.randint(0,upper_limit))
+        yield dut.a9.eq(random.randint(0,upper_limit))
         yield Delay(1e-9)
         yield Settle()
 
