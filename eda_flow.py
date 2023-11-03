@@ -9,12 +9,26 @@ from pymoo.optimize import minimize
 from pymoo.core.problem import ElementwiseProblem
 from pymoo.core.variable import Real, Integer, Choice, Binary
 import os
-
+import re
 
 os.system('rm design_space_exploration.txt')
 os.system('rm design_space.txt')
 with open('design_space.txt','w') as space:
     space.write('design, area, power, delay\n')
+
+
+###################################################################
+#Obtain number of adders
+
+number_of_adders = 0
+with open('dut_base.py') as dut_file:
+    for line in dut_file:
+        area=re.search('[aA][dD][dD][eE][rR].*\s+=',line)
+        if(area):
+            number_of_adders += 1
+    print(number_of_adders)
+
+
 
 
 ##################################################################
@@ -29,15 +43,16 @@ class ThisProblem(ElementwiseProblem):
 
     def __init__(self,**kwargs):
         vars = {
-            "x": Integer(bounds=(0, 2)),
-            "y":Integer(bounds=(1,6))
+            "x": Integer(bounds=(0, 2)), #adder type
+            "y":Integer(bounds=(1,6)), # approximation bits
+            "z":Integer(bounds=(1,(2**number_of_adders)-1)) #selection of adders to replace
         }
         super().__init__(vars=vars, n_obj=3,n_ieq_constr=0,**kwargs)
 
 
     def _evaluate(self,x,out,*args,**kwargs):
-        x,y = x["x"],x["y"]
-        out["F"] = objective_func(x,y)
+        x,y,z = x["x"],x["y"],x["z"]
+        out["F"] = objective_func(x,y,z)
         with open('design_space_exploration.txt','a') as dse:
             dse.write(str(out["F"])+'\n')
         print(out)
@@ -48,19 +63,28 @@ class ThisProblem(ElementwiseProblem):
 #
 #
 #################################################################################################
-def objective_func(x,y):
+def objective_func(x,y,z):
+    adder_map=[]
     if(x==0):
         atype = 'COPY'
     elif(x==1):
         atype = 'TRUN'
     elif(x==2):
         atype = 'LOA'
-    
+
+    add_count = 1
+    print(atype)
     with open('adder_selection.txt','w') as select:
-        select.write(atype+" "+str(y))
+        for i in range(number_of_adders):
+            if(z>>i&1):
+                select.write(atype+" "+str(y)+" "+str(add_count)+"\n")
+            else:
+                select.write("STD 0 "+str(add_count)+"\n")
+            add_count += 1
     with open('design_space_exploration.txt','a') as dse:
         dse.write(atype+str(y)+'\n')
     os.system("python3 adder_builder.py") #first create adder
+    os.system("python3 dut_builder.py") # build the new dut file
     os.system('python3 dut_tb.py') #run test bench with this adder approximation
     os.system("python3 out_extract.py") #extract output values
    
@@ -90,8 +114,10 @@ def objective_func(x,y):
 ################################################### golden run #################################################################
 
 with open('adder_selection.txt','w') as select:
-    select.write("STD 0")
+    for counter in range(number_of_adders):
+        select.write("STD 0 1\n")
 os.system("python3 adder_builder.py") #first create adder
+os.system("python3 dut_builder.py") # build the new dut file
 os.system('python3 dut_tb.py') #run DUT for reference
 os.system("python3 out_extract.py") #extract output values
 os.system("mv output_values.txt golden_values.txt") #rename output to golden
