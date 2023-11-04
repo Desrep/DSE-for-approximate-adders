@@ -4,7 +4,7 @@ import random
 
 
 dut = dut(32)
-upper_limit = 2048
+upper_limit = 65535
 
 random.seed(1)
 def bench():

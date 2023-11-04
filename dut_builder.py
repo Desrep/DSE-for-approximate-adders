@@ -1,22 +1,25 @@
 import os
 import re
 
+# Creates the new dut from dut_base#
+# Adds the imports for the approximate adders and changes the instances
+
 os.system('rm dut.py')
 
 adder_number = 0
-with open('adder_selection.txt','r') as sel_adder:
+with open('adder_selection.txt','r') as sel_adder:#cuenta las instancias
     for line in sel_adder:
         adder_number += 1
 
 adder_list = []
 adder_type = []
-with open('adder_selection.txt') as next_adder:
+with open('adder_selection.txt') as next_adder:#obtiene los tipos, en orden
     for line in next_adder:
-        adder_list.append(line.split()[2].strip())
-        adder_type.append(line.split()[0].strip())
+        adder_list.append(line.split()[2].strip())#numero de instancia
+        adder_type.append(line.split()[0].strip())#tipo de adder
 
-
-with open('dut_prev.py','w') as out_file:
+#archivo intermedio, primero crea los imports usando el numero de adder_list
+with open('dut_prev.py','w') as out_file: 
     out_file.write('from amaranth import *\nfrom amaranth.cli import main\n')
     for adders in adder_list:
         out_file.write('from built_adder'+adders+' import Adder'+adders+'\n')
@@ -25,6 +28,7 @@ with open('dut_prev.py','w') as out_file:
 count = 0
 sub_string = ''
 count_lim = len(adder_list)
+#cambiar las instancias de Adder a Adderx desde adder_list
 with open('dut_base.py','r') as dut_original:
     with open('dut_prev.py','a') as dut_final:
         for idx,line in enumerate(dut_original):

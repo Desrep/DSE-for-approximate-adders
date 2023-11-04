@@ -35,24 +35,30 @@ with open('dut_base.py') as dut_file:
 # Problem definition
 #x selects the type of adder and y the number of approximation bits############
 # Results are area,power,delay and MAE , no constraints for now#################
-#
+# 
 #
 ###################################################################################
+
+#********************************************************************!!!!!!!!!!!!!!!!!!!!!!
+#nota# ver si la codificacion se puede mejorar sin que sea muy dificil
+#***********************************************************************!!!!!!!!!!!!!!!!!!!!!!!
+#Nota: Crear el bound de y1 de forma automatica con number_of_adders
 
 class ThisProblem(ElementwiseProblem):
 
     def __init__(self,**kwargs):
         vars = {
-            "x": Integer(bounds=(0, 2)), #adder type
-            "y":Integer(bounds=(1,6)), # approximation bits
-            "z":Integer(bounds=(1,(2**number_of_adders)-1)) #selection of adders to replace
+            "z":Integer(bounds=(1,(2**number_of_adders)-1)), #selection of adders to replace
+            "x0":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 0
+            "x1":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 1
+            "y1":Integer(bounds = (0,99999999)), # aproximation bits for 8 adders (each from 0 to 9)
         }
         super().__init__(vars=vars, n_obj=3,n_ieq_constr=0,**kwargs)
 
 
     def _evaluate(self,x,out,*args,**kwargs):
-        x,y,z = x["x"],x["y"],x["z"]
-        out["F"] = objective_func(x,y,z)
+        x0,x1,y1 = x["x0"],x["x1"],x["y1"]
+        out["F"] = objective_func(x0,x1,y1)
         with open('design_space_exploration.txt','a') as dse:
             dse.write(str(out["F"])+'\n')
         print(out)
@@ -63,26 +69,46 @@ class ThisProblem(ElementwiseProblem):
 #
 #
 #################################################################################################
-def objective_func(x,y,z):
-    adder_map=[]
-    if(x==0):
-        atype = 'COPY'
-    elif(x==1):
-        atype = 'TRUN'
-    elif(x==2):
-        atype = 'LOA'
-
+def objective_func(x0,x1,y1):
+    
+    bits_list = str(y1)
     add_count = 1
-    print(atype)
+    padding = ''
+
+    if(len(bits_list)<number_of_adders): #number needs to have at least number_of_adder digits
+        for i in range(number_of_adders - len(bits_list)):
+            padding = padding+'0'
+
+    bits_list = padding+bits_list
+    print(bits_list)
     with open('adder_selection.txt','w') as select:
         for i in range(number_of_adders):
-            if(z>>i&1):
-                select.write(atype+" "+str(y)+" "+str(add_count)+"\n")
+            t1 = (x1>>i&1) 
+            t0 = (x0>>i&1)
+            print(str(t1)+str(t0)) #binary code for adder type
+            if((t1 == 0) and (t0 == 0)):
+                atype = 'STD'
+            elif((t1 == 0) and (t0 == 1)):
+                atype = 'COPY'
+            elif((t1 == 1) and (t0 == 0)):
+                atype = 'TRUN'
+            elif((t1 == 1) and (t0 == 1)):
+                atype = 'LOA'
+
+            print(atype)
+            y = bits_list[i]
+            y = int(y) + 1 #prevents 0 as approximation bits
+            y = str(y)
+            # approx number of bits go from 1 to 10 then
+
+            if(atype == 'STD'):
+                select.write(atype+" 0 "+str(add_count)+"\n")
             else:
-                select.write("STD 0 "+str(add_count)+"\n")
+                select.write(atype+" "+y+" "+str(add_count)+"\n")
+                print(y)
             add_count += 1
     with open('design_space_exploration.txt','a') as dse:
-        dse.write(atype+str(y)+'\n')
+        dse.write(bin(x1)+' '+bin(x0)+' '+y+' adder type and number of approximate bits'+'\n')
     os.system("python3 adder_builder.py") #first create adder
     os.system("python3 dut_builder.py") # build the new dut file
     os.system('python3 dut_tb.py') #run test bench with this adder approximation
@@ -151,10 +177,10 @@ plot.add(problem.pareto_front(), plot_type="surface", color="blue", alpha=0.7)
 plot.add(res.F, facecolor="none", edgecolor="red")
 with open('design_space_exploration.txt') as dsp:
     for data in dsp:
-        if(len(data.split())!= 1):
+        if(len(data.split()) < 4):
             #design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',')), float(data.split()[2].strip(',')), float((data.split()[3].strip(',')).strip(']'))]
             design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',')), float((data.split()[2].strip(',')).strip(']'))]
-
+                
             plot.add(np.array(design_space), facecolor = "none", edgecolor = "black")
 plot.show()
 
