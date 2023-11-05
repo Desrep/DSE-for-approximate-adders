@@ -30,7 +30,7 @@ acc_count = 0
 ###############copy design to openlane dir and run synthesis#############################
 for dut in designs:
     os.system("cp "+dut+" "+open_lane_path+"designs/dut/src/top.v")
-    os.system("docker exec "+docker_id+" ./flow.tcl -design dut -overwrite -tag "+this_tag+" -to synthesis")
+    os.system("docker exec "+docker_id+" ./flow.tcl -design dut -overwrite -tag "+this_tag+" -to "+step)
     
 ##################open reports and get the date#############################################################
    #area#

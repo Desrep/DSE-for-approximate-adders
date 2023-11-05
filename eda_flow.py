@@ -160,11 +160,11 @@ def mae(golden, aprox):
 ##################################Run exploration#################################################
 problem = ThisProblem()
 
-algorithm = MixedVariableGA(pop_size=10, survival=RankAndCrowdingSurvival())
+algorithm = MixedVariableGA(pop_size=12, survival=RankAndCrowdingSurvival())
 
 res = minimize(problem,
                algorithm,
-               ('n_gen', 20),
+               ('n_gen', 22),
                seed=1,
                save_history = True,
                verbose=False)
