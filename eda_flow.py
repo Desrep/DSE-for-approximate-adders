@@ -48,7 +48,6 @@ class ThisProblem(ElementwiseProblem):
 
     def __init__(self,**kwargs):
         vars = {
-            "z":Integer(bounds=(1,(2**number_of_adders)-1)), #selection of adders to replace
             "x0":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 0
             "x1":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 1
             "y1":Integer(bounds = (0,99999999)), # aproximation bits for 8 adders (each from 0 to 9)
