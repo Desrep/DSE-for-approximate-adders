@@ -11,6 +11,8 @@ from pymoo.core.variable import Real, Integer, Choice, Binary
 import os
 import re
 
+
+
 os.system('rm design_space_exploration.txt')
 os.system('rm design_space.txt')
 with open('design_space.txt','w') as space:
@@ -44,24 +46,17 @@ with open('dut_base.py') as dut_file:
 #***********************************************************************!!!!!!!!!!!!!!!!!!!!!!!
 #Nota: Crear el bound de y1 de forma automatica con number_of_adders
 
-class ThisProblem(ElementwiseProblem):
+def exhaustive_run():
+    y1 = 11111111
+    x1 = 111111111
+    x0 = 1010101
+    out = []
+    out = objective_func(x0,x1,y1)
+    with open('design_space_exploration.txt','a') as dse:
+        dse.write(str(out)+'\n')
+    print(out)
 
-    def __init__(self,**kwargs):
-        vars = {
-            "z":Integer(bounds=(1,(2**number_of_adders)-1)), #selection of adders to replace
-            "x0":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 0
-            "x1":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 1
-            "y1":Integer(bounds = (0,99999999)), # aproximation bits for 8 adders (each from 0 to 9)
-        }
-        super().__init__(vars=vars, n_obj=3,n_ieq_constr=0,**kwargs)
 
-
-    def _evaluate(self,x,out,*args,**kwargs):
-        x0,x1,y1 = x["x0"],x["x1"],x["y1"]
-        out["F"] = objective_func(x0,x1,y1)
-        with open('design_space_exploration.txt','a') as dse:
-            dse.write(str(out["F"])+'\n')
-        print(out)
 
 #################################################################################################
 # Procedure for getting output values
@@ -159,22 +154,11 @@ def mae(golden, aprox):
 
 
 ##################################Run exploration#################################################
-problem = ThisProblem()
-
-algorithm = MixedVariableGA(pop_size=10, survival=RankAndCrowdingSurvival())
-
-res = minimize(problem,
-               algorithm,
-               ('n_gen', 20),
-               seed=1,
-               save_history = True,
-               verbose=False)
+exhaustive_run()
 
 
 #############################Plot the results##################################################
 plot = Scatter()
-plot.add(problem.pareto_front(), plot_type="surface", color="blue", alpha=0.7)
-plot.add(res.F, facecolor="none", edgecolor="red")
 with open('design_space_exploration.txt') as dsp:
     for data in dsp:
         if(len(data.split()) < 4):
@@ -185,4 +169,3 @@ with open('design_space_exploration.txt') as dsp:
 plot.show()
 
 
-print("Best solution found: \nX = %s\nF = %s" % (res.X, res.F))
