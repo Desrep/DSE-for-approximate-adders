@@ -99,7 +99,7 @@ def exhaustive_run():
                 print('y1 es '+y1+'\n')
                 y1 = int(y1)
                 out = objective_func(x0,x1,y1)
-                with open('design_space_exploration.txt','w') as dse:
+                with open('design_space_exploration.txt','a') as dse:
                     dse.write(str(out)+'\n')
                 print(out)
 
