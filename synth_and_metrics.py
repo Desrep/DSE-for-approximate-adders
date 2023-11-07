@@ -3,7 +3,7 @@ import csv
 import re
 import glob
 
-open_lane_path = '/home/simuse/OpenLane/'
+open_lane_path = '/home/diesquivel@estudiantes.ie.tec.ac.cr/OpenLane/'
 step = 'synthesis'
 #the other possible step is signoff
 

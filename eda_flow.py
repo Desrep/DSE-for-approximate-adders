@@ -47,15 +47,148 @@ with open('dut_base.py') as dut_file:
 #Nota: Crear el bound de y1 de forma automatica con number_of_adders
 
 def exhaustive_run():
-    y1 = 11111111
-    x1 = 111111111
-    x0 = 1010101
-    out = []
-    out = objective_func(x0,x1,y1)
-    with open('design_space_exploration.txt','a') as dse:
-        dse.write(str(out)+'\n')
-    print(out)
-
+    for x1 in range(512):
+        for x0 in range(1,512):
+            out = []
+            ys = []
+            yindex = []
+            qty = 0
+            y1 = 0
+            orx = x0|x1
+            for i in range(8):
+                tor  = (orx>>i)&1
+                if tor == 1:
+                    qty = qty + 1
+                    yindex.append(str(i))
+                    ys.append(str(tor))
+            if qty == 1:
+                for i in range(10):
+                    ind = int(yindex[0])
+                    y1 = i*10**ind
+                    out = objective_func(x0,x1,y1)
+                    with open('design_space_exploration.txt','a') as dse:
+                        dse.write(str(out)+'\n')
+                    print(out)
+                    y1 = 0
+            elif qty == 2:
+                for i in range(10):
+                    for j in range(10):
+                        ind1 = int(yindex[0])
+                        ind2 = int(yindex[1])
+                        y1 = i*10**ind1 + j*10**ind2
+                        out = objective_func(x0,x1,y1)
+                        with open('design_space_exploration.txt','a') as dse:
+                            dse.write(str(out)+'\n')
+                        print(out)
+                        y1 = 0
+            elif qty == 3:
+                for i in range(10):
+                    for j in range(10):
+                        for k in range(10):
+                            ind1 = int(yindex[0])
+                            ind2 = int(yindex[1])
+                            ind3 = int(yindex[2])
+                            y1 = i*10**ind1 + j*10**ind2 + k*10**ind3
+                            out = objective_func(x0,x1,y1)
+                            with open('design_space_exploration.txt','a') as dse:
+                                dse.write(str(out)+'\n')
+                            print(out)
+                            y1 = 0
+            elif qty == 4:
+                for i in range(10):
+                    for j in range(10):
+                        for k in range(10):
+                            for p in range(10):
+                                ind1 = int(yindex[0])
+                                ind2 = int(yindex[1])
+                                ind3 = int(yindex[2])
+                                ind4 = int(yindex[3])
+                                y1 = i*10**ind1 + j*10**ind2 + k*10**ind3 +  p*10**ind4
+                                out = objective_func(x0,x1,y1)
+                                with open('design_space_exploration.txt','a') as dse:
+                                    dse.write(str(out)+'\n')
+                                print(out)
+                                y1 = 0
+            elif qty == 5:
+                for i in range(10):
+                    for j in range(10):
+                        for k in range(10):
+                            for p in range(10):
+                                for q in range(10):
+                                    ind1 = int(yindex[0])
+                                    ind2 = int(yindex[1])
+                                    ind3 = int(yindex[2])
+                                    ind4 = int(yindex[3])
+                                    ind5 = int(yindex[4])
+                                    y1 = i*10**ind1 + j*10**ind2 + k*10**ind3 + p*10**ind4 + q*10**ind5
+                                    out = objective_func(x0,x1,y1)
+                                    with open('design_space_exploration.txt','a') as dse:
+                                        dse.write(str(out)+'\n')
+                                    print(out)
+                                    y1 = 0
+            elif qty == 6:
+                for i in range(10):
+                    for j in range(10):
+                        for k in range(10):
+                            for p in range(10):
+                                for q in range(10):
+                                    for t in range(10):
+                                        ind1 = int(yindex[0])
+                                        ind2 = int(yindex[1])
+                                        ind3 = int(yindex[2])
+                                        ind4 = int(yindex[3])
+                                        ind5 = int(yindex[4])
+                                        ind6 = int(yindex[5])
+                                        y1 = i*10**ind1 + j*10**ind2 + k*10**ind3 + p*10**ind4 + q*10**ind5 + t*10**ind6
+                                        out = objective_func(x0,x1,y1)
+                                        with open('design_space_exploration.txt','a') as dse:
+                                            dse.write(str(out)+'\n')
+                                        print(out)
+                                        y1 = 0
+            elif qty == 7:
+                for i in range(10):
+                    for j in range(10):
+                        for k in range(10):
+                            for p in range(10):
+                                for q in range(10):
+                                    for t in range(10):
+                                        for m in range(10):
+                                            ind1 = int(yindex[0])
+                                            ind2 = int(yindex[1])
+                                            ind3 = int(yindex[2])
+                                            ind4 = int(yindex[3])
+                                            ind5 = int(yindex[4])
+                                            ind6 = int(yindex[5])
+                                            ind7 = int(yindex[6])
+                                            y1 = i*10**ind1 + j*10**ind2 + k*10**ind3 + p*10**ind4 + q*10**ind5 + t*10**ind6 + m*10**ind7
+                                            out = objective_func(x0,x1,y1)
+                                            with open('design_space_exploration.txt','a') as dse:
+                                                dse.write(str(out)+'\n')
+                                            print(out)
+                                            y1 = 0
+            elif qty == 8:
+                for i in range(10):
+                    for j in range(10):
+                        for k in range(10):
+                            for p in range(10):
+                                for q in range(10):
+                                    for t in range(10):
+                                        for m in range(10):
+                                            for n in range(10):
+                                                ind1 = int(yindex[0])
+                                                ind2 = int(yindex[1])
+                                                ind3 = int(yindex[2])
+                                                ind4 = int(yindex[3])
+                                                ind5 = int(yindex[4])
+                                                ind6 = int(yindex[5])
+                                                ind7 = int(yindex[6])
+                                                ind8 = int(yindex[7])
+                                                y1 = i*10**ind1 + j*10**ind2 + k*10**ind3 + p*10**ind4 + q*10**ind5 + t*10**ind6 + m*10**ind7 + n*10**ind8
+                                                out = objective_func(x0,x1,y1)
+                                                with open('design_space_exploration.txt','a') as dse:
+                                                    dse.write(str(out)+'\n')
+                                                print(out)
+                                                y1 = 0
 
 
 #################################################################################################
@@ -78,7 +211,7 @@ def objective_func(x0,x1,y1):
     print(bits_list)
     with open('adder_selection.txt','w') as select:
         for i in range(number_of_adders):
-            t1 = (x1>>i&1) 
+            t1 = (x1>>i&1)
             t0 = (x0>>i&1)
             print(str(t1)+str(t0)) #binary code for adder type
             if((t1 == 0) and (t0 == 0)):
