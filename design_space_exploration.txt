@@ -1,5 +1,0 @@
-0b0 0b1 1 adder type and number of approximate bits
-[5261.0, 5.93, 0.03]
-0b0 0b1 2 adder type and number of approximate bits
-[5261.0, 5.93, 0.03]
-0b0 0b1 3 adder type and number of approximate bits

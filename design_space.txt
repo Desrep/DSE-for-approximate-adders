@@ -1,5 +1,0 @@
-design, area, power, delay
-dut, 5261, 5.20e-04, 5.93
-
-dut, 5261, 5.20e-04, 5.93
-

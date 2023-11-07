@@ -1,7 +1,0 @@
-CONTAINER ID   IMAGE                                                              COMMAND                  CREATED          STATUS          PORTS     NAMES
-b72c969a97be   efabless/openlane:cb59d1f84deb5cedbb5b0a3e3f3b4129a967c988-amd64   "/bin/sh -c /bin/bash"   58 minutes ago   Up 58 minutes             distracted_moser
-6326ecfcf390   efabless/openlane:cb59d1f84deb5cedbb5b0a3e3f3b4129a967c988-amd64   "/bin/sh -c /bin/bash"   8 hours ago      Up 8 hours                serene_mestorf
-bd9564dd1bca   efabless/openlane:cb59d1f84deb5cedbb5b0a3e3f3b4129a967c988-amd64   "/bin/sh -c /bin/bash"   15 hours ago     Up 15 hours               magical_galois
-651c865772b3   efabless/openlane:cb59d1f84deb5cedbb5b0a3e3f3b4129a967c988-amd64   "/bin/sh -c /bin/bash"   28 hours ago     Up 28 hours               nifty_franklin
-836477bf0abe   efabless/openlane:cb59d1f84deb5cedbb5b0a3e3f3b4129a967c988-amd64   "/bin/sh -c /bin/bash"   2 days ago       Up 2 days                 busy_zhukovsky
-f4cfe1ce8e36   efabless/openlane:cb59d1f84deb5cedbb5b0a3e3f3b4129a967c988-amd64   "/bin/sh -c /bin/bash"   2 days ago       Up 2 days                 nifty_gagarin
