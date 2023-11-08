@@ -29,6 +29,11 @@ with open('dut_base.py') as dut_file:
     print(number_of_adders)
 
 
+y1_bound = ''
+for i in range(number_of_adders):
+    y1_bound = y1_bound + '9'
+y1_bound = int(y1_bound)
+print('y1 bound is '+str(y1_bound))
 
 
 ##################################################################
@@ -42,7 +47,6 @@ with open('dut_base.py') as dut_file:
 #********************************************************************!!!!!!!!!!!!!!!!!!!!!!
 #nota# ver si la codificacion se puede mejorar sin que sea muy dificil
 #***********************************************************************!!!!!!!!!!!!!!!!!!!!!!!
-#Nota: Crear el bound de y1 de forma automatica con number_of_adders
 
 class ThisProblem(ElementwiseProblem):
 
@@ -50,7 +54,7 @@ class ThisProblem(ElementwiseProblem):
         vars = {
             "x0":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 0
             "x1":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 1
-            "y1":Integer(bounds = (0,99999999)), # aproximation bits for 8 adders (each from 0 to 9)
+            "y1":Integer(bounds = (0,y1_bound)), # aproximation bits for 8 adders (each from 0 to 9)
         }
         super().__init__(vars=vars, n_obj=3,n_ieq_constr=0,**kwargs)
 
