@@ -148,7 +148,7 @@ def objective_func(x0,x1,y1):
                 print(y)
             add_count += 1
     with open('design_space_exploration.txt','a') as dse:
-        dse.write(bin(x1)+' '+bin(x0)+' '+y+' adder type and number of approximate bits'+'\n')
+        dse.write(bin(x1)+' '+bin(x0)+' '+str(y1)+' adder type and number of approximate bits'+'\n')
     os.system("python3 adder_builder.py") #first create adder
     os.system("python3 dut_builder.py") # build the new dut file
     os.system('python3 dut_tb.py') #run test bench with this adder approximation
