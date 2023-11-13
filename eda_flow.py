@@ -56,7 +56,7 @@ class ThisProblem(ElementwiseProblem):
             "x1":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 1
             "y1":Integer(bounds = (0,y1_bound)), # aproximation bits for 8 adders (each from 0 to 9)
         }
-        super().__init__(vars=vars, n_obj=3,n_ieq_constr=0,**kwargs)
+        super().__init__(vars=vars, n_obj=2,n_ieq_constr=0,**kwargs)
 
 
     def _evaluate(self,x,out,*args,**kwargs):
@@ -136,8 +136,9 @@ def objective_func(x0,x1,y1):
             if(line == 1):
                 with open('design_space.txt','a') as space:
                     space.write(data+'\n')
-                #f = [float(data.split()[1].strip(',')), float(data.split()[2].strip(','))*1e5, float(data.split()[3].strip(',')),float(mae_val)]
-                f = [float(data.split()[1].strip(',')), float(data.split()[3].strip(',')),float(mae_val)]
+                #f = [float(data.split()[1].strip(','))*float(data.split()[2].strip(','))*float(data.split()[3].strip(',')),float(mae_val)] #pda
+                f = [float(data.split()[1].strip(','))*float(data.split()[3].strip(',')),float(mae_val)] 
+                #f = [float(data.split()[1].strip(',')), float(data.split()[3].strip(',')),float(mae_val)]
     return f
 
 ################################################### golden run #################################################################
@@ -164,11 +165,11 @@ def mae(golden, aprox):
 ##################################Run exploration#################################################
 problem = ThisProblem()
 
-algorithm = MixedVariableGA(pop_size=18, survival=RankAndCrowdingSurvival())
+algorithm = MixedVariableGA(pop_size=10, survival=RankAndCrowdingSurvival())
 
 res = minimize(problem,
                algorithm,
-               ('n_gen', 22),
+               ('n_gen', 10),
                seed=1,
                save_history = True,
                verbose=False)
@@ -182,7 +183,7 @@ with open('design_space_exploration.txt') as dsp:
     for data in dsp:
         if(len(data.split()) < 4):
             #design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',')), float(data.split()[2].strip(',')), float((data.split()[3].strip(',')).strip(']'))]
-            design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',')), float((data.split()[2].strip(',')).strip(']'))]
+            design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',').strip(']'))]
                 
             plot.add(np.array(design_space), facecolor = "none", edgecolor = "black")
 plot.show()
