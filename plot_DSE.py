@@ -1,23 +1,34 @@
+import re
 import numpy as np
-from pymoo.core.problem import Problem
-from pymoo.visualization.scatter import Scatter
-from pymoo.algorithms.moo.nsga2 import RankAndCrowdingSurvival
-from pymoo.core.mixed import MixedVariableGA
-from pymoo.optimize import minimize
-from pymoo.core.problem import ElementwiseProblem
-from pymoo.core.variable import Real, Integer, Choice, Binary
-import os
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-#############################Plot the results##################################################
-plot = Scatter()
-#plot.add(problem.pareto_front(), plot_type="surface", color="blue", alpha=0.7)
-#plot.add(res.F, facecolor="none", edgecolor="red")
-with open('design_space_exploration.txt') as dsp:
-    for data in dsp:
-        if(len(data.split()) < 4):
-            #design_space = [float((data.split()[0].strip(',')).strip('[')), float(data.split()[1].strip(',')), float(data.split()[2].strip(',')), float((data.split()[3].strip(',')).strip(']'))]
-            design_space = [float((data.split()[0].strip(',')).strip('[')), float((data.split()[1].strip(',')).strip(']'))]
+# Read the log file
+with open('design_space_exploration.txt', 'r') as file:
+    log_content = file.read()
 
-            plot.add(np.array(design_space), facecolor = "none", edgecolor = "black")
-plot.show()
+# Extract data using regular expressions
+pattern = re.compile(r"approximate bits\n\[(\d+\.\d+), (\d+\.\d+)\]")
+matches = pattern.findall(log_content)
+
+# Convert data to numpy array
+data = np.array([list(map(float, match)) for match in matches])
+
+# Create a single figure with subplots
+fig = plt.figure(figsize=(14, 6))
+
+# Precision vs Area delay
+ax1 = fig.add_subplot(111)
+ax1.scatter(data[:, 0], data[:, 1], c='green', marker='o')
+ax1.set_xlabel('Area*delay')
+ax1.set_ylabel('Approximate Adder Precision')
+ax1.set_title('Precision vs area*delay')
+
+
+# Adjust layout
+plt.tight_layout()
+
+# Show the plots
+plt.show()
+
 
