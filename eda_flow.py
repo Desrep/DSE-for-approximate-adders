@@ -15,7 +15,7 @@ os.system('rm design_space_exploration.txt')
 os.system('rm design_space.txt')
 with open('design_space.txt','w') as space:
     space.write('design, area, power, delay\n')
-
+mae_constraint = 150
 
 ###################################################################
 #Obtain number of adders
@@ -56,12 +56,13 @@ class ThisProblem(ElementwiseProblem):
             "x1":Integer(bounds=(1,(2**number_of_adders)-1)), #adder type bit 1
             "y1":Integer(bounds = (0,y1_bound)), # aproximation bits for 8 adders (each from 0 to 9)
         }
-        super().__init__(vars=vars, n_obj=2,n_ieq_constr=0,**kwargs)
+        super().__init__(vars=vars, n_obj=2,n_ieq_constr=1,**kwargs)
 
 
     def _evaluate(self,x,out,*args,**kwargs):
         x0,x1,y1 = x["x0"],x["x1"],x["y1"]
         out["F"] = objective_func(x0,x1,y1)
+        out["G"] =  out["F"][1] - mae_constraint
         with open('design_space_exploration.txt','a') as dse:
             dse.write(str(out["F"])+'\n')
         print(out)
