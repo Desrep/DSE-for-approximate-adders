@@ -1,0 +1,200 @@
+0b10000010 0b100110 4 adder type and number of approximate bits
+[46484.01, 0.479]
+0b11001101 0b11101100 6 adder type and number of approximate bits
+[36313.799999999996, 8.54]
+0b1001000 0b10001101 5 adder type and number of approximate bits
+[38684.51, 32.37]
+0b11101110 0b1001001 1 adder type and number of approximate bits
+[43506.96, 12.193]
+0b11111101 0b10001010 7 adder type and number of approximate bits
+[42953.61, 6.948]
+0b10000111 0b11001100 9 adder type and number of approximate bits
+[38276.5, 21.326]
+0b11010 0b10000110 1 adder type and number of approximate bits
+[43709.25, 5.01]
+0b10110011 0b1010000 5 adder type and number of approximate bits
+[35342.0, 33.174]
+0b10101 0b11000001 4 adder type and number of approximate bits
+[49186.9, 0.71]
+0b11111111 0b10010001 2 adder type and number of approximate bits
+[40742.87, 3.064]
+0b1001000 0b11001001 8 adder type and number of approximate bits
+[46054.770000000004, 8.402]
+0b11101101 0b1001001 10 adder type and number of approximate bits
+[36973.299999999996, 95.412]
+0b10101 0b11000001 2 adder type and number of approximate bits
+[47933.200000000004, 1.069]
+0b11001 0b1010010 4 adder type and number of approximate bits
+[41688.0, 34.172]
+0b11001110 0b11110011 6 adder type and number of approximate bits
+[34287.3, 31.242]
+0b10000111 0b10010000 7 adder type and number of approximate bits
+[34259.84, 18.28]
+0b11111110 0b10001010 5 adder type and number of approximate bits
+[38032.08, 2.014]
+0b10000010 0b100101 9 adder type and number of approximate bits
+[35825.299999999996, 36.628]
+0b10110100 0b10000110 2 adder type and number of approximate bits
+[46857.76, 0.663]
+0b11111101 0b10010010 2 adder type and number of approximate bits
+[32205.960000000003, 81.234]
+0b10000111 0b10010011 1 adder type and number of approximate bits
+[43496.100000000006, 8.148]
+0b10000100 0b100101 3 adder type and number of approximate bits
+[48259.799999999996, 0.258]
+0b11111111 0b10101100 1 adder type and number of approximate bits
+[31040.82, 16.763]
+0b10110 0b11000001 9 adder type and number of approximate bits
+[34272.51, 52.114]
+0b10001011 0b11011101 5 adder type and number of approximate bits
+[42006.32, 6.25]
+0b11001101 0b11101001 6 adder type and number of approximate bits
+[46519.659999999996, 1.415]
+0b11001100 0b11110011 4 adder type and number of approximate bits
+[40134.66, 12.422]
+0b11111101 0b10010001 3 adder type and number of approximate bits
+[41989.11, 11.729]
+0b10110101 0b10000110 1 adder type and number of approximate bits
+[36700.92, 25.41]
+0b10000111 0b10011111 5 adder type and number of approximate bits
+[44388.59, 4.198]
+0b1111001 0b10010000 7 adder type and number of approximate bits
+[44678.21, 4.426]
+0b10110010 0b10010101 7 adder type and number of approximate bits
+[40046.25, 5.424]
+0b11001100 0b11101100 9 adder type and number of approximate bits
+[45537.18, 7.003]
+0b11111110 0b10101100 1 adder type and number of approximate bits
+[40198.4, 1.511]
+0b1110011 0b100101 3 adder type and number of approximate bits
+[36077.2, 66.898]
+0b11111111 0b10010001 8 adder type and number of approximate bits
+[28428.24, 46.508]
+0b11111110 0b10000110 4 adder type and number of approximate bits
+[39238.020000000004, 21.21]
+0b10101010 0b11111000 1 adder type and number of approximate bits
+[49327.53999999999, 0.453]
+0b11111111 0b10001010 7 adder type and number of approximate bits
+[43566.21, 9.522]
+0b10000100 0b110110 4 adder type and number of approximate bits
+[43484.4, 3.477]
+0b10001010 0b100101 4 adder type and number of approximate bits
+[42439.14, 1.161]
+0b11111110 0b10101111 6 adder type and number of approximate bits
+[33885.6, 23.722]
+0b11111111 0b11111000 8 adder type and number of approximate bits
+[31037.58, 16.63]
+0b10100110 0b10010001 7 adder type and number of approximate bits
+[34259.84, 18.28]
+0b10000100 0b100110 3 adder type and number of approximate bits
+[47970.439999999995, 2.245]
+0b11111111 0b10001010 5 adder type and number of approximate bits
+[36857.479999999996, 2.966]
+0b11111101 0b10001111 2 adder type and number of approximate bits
+[35400.29, 65.298]
+0b10101010 0b10010001 5 adder type and number of approximate bits
+[40870.4, 32.578]
+0b11111001 0b10101011 10 adder type and number of approximate bits
+[40898.520000000004, 15.228]
+0b11000001 0b11111000 1 adder type and number of approximate bits
+[43271.05, 8.145]
+0b11111111 0b10010001 1 adder type and number of approximate bits
+[41939.68, 2.977]
+0b10101010 0b11110100 10 adder type and number of approximate bits
+[35988.07, 21.106]
+0b11110110 0b10100 4 adder type and number of approximate bits
+[36635.549999999996, 7.33]
+0b11111110 0b11111001 5 adder type and number of approximate bits
+[36141.71, 40.322]
+0b10000011 0b100110 3 adder type and number of approximate bits
+[48259.799999999996, 0.258]
+0b11000101 0b11101100 10 adder type and number of approximate bits
+[36358.4, 16.47]
+0b11111101 0b10101111 2 adder type and number of approximate bits
+[33829.59, 24.466]
+0b10001100 0b10001010 1 adder type and number of approximate bits
+[47790.159999999996, 0.232]
+0b11111111 0b10001001 6 adder type and number of approximate bits
+[31672.66, 40.002]
+0b10000010 0b100101 10 adder type and number of approximate bits
+[33503.840000000004, 94.772]
+0b10001100 0b10001010 10 adder type and number of approximate bits
+[40336.92, 12.353]
+0b11010000 0b10001011 6 adder type and number of approximate bits
+[32205.600000000002, 64.842]
+0b10000001 0b11110110 9 adder type and number of approximate bits
+[34452.54, 25.066]
+0b10001010 0b10011 3 adder type and number of approximate bits
+[34726.72, 63.846]
+0b11111111 0b10010001 5 adder type and number of approximate bits
+[38911.530000000006, 32.378]
+0b11111010 0b11101011 10 adder type and number of approximate bits
+[40243.2, 16.474]
+0b11111111 0b100111 5 adder type and number of approximate bits
+[33243.73, 36.342]
+0b11110110 0b11100 2 adder type and number of approximate bits
+[30120.22, 81.234]
+0b11111111 0b10001010 8 adder type and number of approximate bits
+[35262.69, 16.46]
+0b11111110 0b11110100 8 adder type and number of approximate bits
+[30879.56, 49.029]
+0b11111111 0b10001100 4 adder type and number of approximate bits
+[36450.18, 16.526]
+0b11111100 0b10010101 5 adder type and number of approximate bits
+[37972.48, 18.242]
+0b11001010 0b10101111 6 adder type and number of approximate bits
+[34354.85, 12.162]
+0b11111110 0b100000 5 adder type and number of approximate bits
+[30521.6, 33.814]
+0b11111001 0b11111000 6 adder type and number of approximate bits
+[30890.199999999997, 16.084]
+0b11111111 0b10001010 6 adder type and number of approximate bits
+[43271.7, 6.512]
+0b10001100 0b10001010 7 adder type and number of approximate bits
+[43608.780000000006, 32.273]
+0b11111111 0b11101001 1 adder type and number of approximate bits
+[38050.95, 1.483]
+0b10001010 0b10001111 6 adder type and number of approximate bits
+[47058.57, 0.88]
+0b10001100 0b100101 3 adder type and number of approximate bits
+[49796.0, 1.257]
+0b11111111 0b10001000 5 adder type and number of approximate bits
+[36560.909999999996, 17.282]
+0b11001000 0b10010001 8 adder type and number of approximate bits
+[27900.6, 47.218]
+0b11110101 0b10010 8 adder type and number of approximate bits
+[37395.28, 17.14]
+0b10001011 0b100100 4 adder type and number of approximate bits
+[42439.14, 1.161]
+0b11111111 0b1001 1 adder type and number of approximate bits
+[41250.18, 1.945]
+0b11000111 0b10110001 4 adder type and number of approximate bits
+[36746.18, 16.942]
+0b11111101 0b11101100 7 adder type and number of approximate bits
+[32223.04, 31.98]
+0b10010100 0b10010000 10 adder type and number of approximate bits
+[39024.479999999996, 14.658]
+0b11010010 0b11101001 6 adder type and number of approximate bits
+[30247.0, 24.12]
+0b1110001 0b11111101 4 adder type and number of approximate bits
+[50614.96, 0.783]
+0b10100101 0b100101 1 adder type and number of approximate bits
+[49053.899999999994, 0.027]
+0b11111001 0b11111001 7 adder type and number of approximate bits
+[50142.399999999994, 1.722]
+0b11111111 0b10010001 1 adder type and number of approximate bits
+[42489.0, 1.52]
+0b11001001 0b11101001 6 adder type and number of approximate bits
+[46519.659999999996, 1.415]
+0b10000010 0b100101 4 adder type and number of approximate bits
+[44070.5, 0.991]
+0b10001100 0b10001010 9 adder type and number of approximate bits
+[40734.9, 32.835]
+0b11110110 0b11100111 1 adder type and number of approximate bits
+[31686.24, 19.687]
+0b11100010 0b10101111 3 adder type and number of approximate bits
+[37390.91, 16.689]
+0b11010001 0b10010110 8 adder type and number of approximate bits
+[30900.030000000002, 26.602]
+0b11001101 0b11010001 9 adder type and number of approximate bits
+[50011.66, 6.154]
