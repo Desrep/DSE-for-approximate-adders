@@ -7,7 +7,7 @@ For example if the DUT (dut_base.py) has 3 adders then the exploration would do 
 
 Try one adder as a LOA with 3 approximate bits, other as a copy approximate adder with 1 approximate bit and the other as a standard one (with no approximation), save the results and try another one, the original dut would use three standard adders and this would be the reference to calculate the accuracy.
 
-The branch exhaustive_search is just a bunch of fors to run and exhaustive search to obtain reference data, this run would never complete for a dut with a modest amount of adders so the idea is just to gather enough data for comparison.
+The branch exhaustive_search is just a bunch of fors to run an exhaustive search to obtain reference data, this run would never complete for a dut with a modest amount of adders so the idea is just to gather enough data for comparison.
 The branch product_implementation is the final state of the project, it uses a genetic alghorithm from PYMOO to try to find the pareto front. The last configuration used obtains some interesting results but it won't get the pareto front, the current measures are accuracy vs delay*area so it is a 2 dimensional problem (this can be easily modified if needed).
 
 To use this change the open_lane_path in synth_and_metrics.py, a container of OpenLane has to be running in a different terminal. Amaranth is also needed for the scripts to run, the OpenLane commit used is the tag 2022.11.19
